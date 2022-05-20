@@ -8,6 +8,11 @@ public class Giroscope : MonoBehaviour
     private Gyroscope gyro;
     private Quaternion rotation;
 
+    private void Awake()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
+
     private void Start()
     {
         gyroEnabled = EnabledGyro();
