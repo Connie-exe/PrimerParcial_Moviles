@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class Giroscope : MonoBehaviour
 {
-    private CharacterController controller;
-    void Start()
+    private bool gyroEnabled;
+    private Gyroscope gyro;
+    private Quaternion rotation;
+
+    private void Start()
     {
-       if(SystemInfo.supportsGyroscope)
-        {
-            Input.gyro.enabled = true;
-        }
-       else
-        {
-            Debug.Log("Your cellphone doesn't support Gyroscope");
-        }
+        gyroEnabled = EnabledGyro();
+
     }
-    void Update()
+    
+    public bool EnabledGyro()
     {
-        transform.rotation = GyroToUnity(Input.gyro.attitude);
-        
+        if(SystemInfo.supportsGyroscope)
+        {
+            gyro = Input.gyro;
+            gyro.enabled = true;
+            transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+            rotation = new Quaternion(0, 0, 1, 0);
+            return true;
+        }
+        else
+        {
+            Debug.Log("Your device doen't support gyroscope");
+            return false;
+        }
     }
 
-    private Quaternion GyroToUnity(Quaternion q)
+    private void Update()
     {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
+        if(gyroEnabled)
+        {
+            transform.localRotation = gyro.attitude * rotation;
+        }
     }
 }
