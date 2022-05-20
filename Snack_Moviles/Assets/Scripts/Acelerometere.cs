@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Acelerometere : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class Acelerometere : MonoBehaviour
         if (other.gameObject.CompareTag("ShakeNotif"))
         {
             txt_shake.text = "SHAKE";
+        }
+        if(other.gameObject.CompareTag("FinishLine"))
+        {
+
         }
     }
 }
