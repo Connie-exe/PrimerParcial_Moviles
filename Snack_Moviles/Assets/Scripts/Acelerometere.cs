@@ -14,21 +14,10 @@ public class Acelerometere : MonoBehaviour
 
     void Update()
     {
-        if(SystemInfo.supportsAccelerometer)
-        {
-            Vector3 tilt = Input.acceleration;
-
-            if (isFlat)
-            {
-                tilt = Quaternion.Euler(-90, 0, 0) * tilt;
-            }
-            rigid.AddForce(tilt * speed);
-        }
-        else
-        {
-            Debug.Log("Your cellphone doesn't support accelerometer");
-        }
         
+         Vector3 tilt = Input.acceleration;
+         tilt = Quaternion.Euler(90, 0, 0) * tilt;
+         rigid.AddForce(tilt * speed);              
 
         //Vector3 dir = Vector3.zero;
         //dir.y = Input.acceleration.y;
