@@ -4,43 +4,56 @@ using UnityEngine;
 
 public class Giroscope : MonoBehaviour
 {
-    private bool gyroEnabled;
-    private Gyroscope gyro;
-    private Quaternion rotation;
-
-    private void Awake()
+    private static Giroscope instance;
+    public static Giroscope intance
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-    }
-
-    private void Start()
-    {
-        gyroEnabled = EnabledGyro();
-
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType<Giroscope>();
+                if(instance == null)
+                {
+                    instance = new GameObject("Spawed GyroManager", typeof(Giroscope)).GetComponent<Giroscope>();
+                }
+            }
+            return instance;
+        }
+        set
+        {
+            instance = value;
+        }
     }
     
-    public bool EnabledGyro()
+    private Gyroscope gyro;
+    private Quaternion rotation;
+    private bool gyroActive;
+
+    public void EnabledGyro()
     {
+        if(gyroActive)
+        {
+            return;
+        }
+
         if(SystemInfo.supportsGyroscope)
         {
             gyro = Input.gyro;
             gyro.enabled = true;
-            transform.rotation = Quaternion.Euler(90f, 90f, 0f);
-            rotation = new Quaternion(0, 0, 1, 0);
-            return true;
-        }
-        else
-        {
-            Debug.Log("Your device doen't support gyroscope");
-            return false;
-        }
+            gyroActive = gyro.enabled;
+        }    
     }
-
+   
     private void Update()
     {
-        if(gyroEnabled)
-        {
-            transform.localRotation = gyro.attitude * rotation;
-        }
+        rotation = gyro.attitude;
+
     }
+
+    public Quaternion GetGyroRotation()
+    {
+        return rotation;
+    }
+
+
 }
