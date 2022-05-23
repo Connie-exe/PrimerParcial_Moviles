@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
-    public GameObject panel_win;
+    public GameObject im_win;
     //public GameObject panel_lose;
     void Start()
     {
@@ -21,7 +21,9 @@ public class WinCondition : MonoBehaviour
     {
         if(Timer.b_timeUp == false)
         {
-            panel_win.SetActive(true);
+            im_win.SetActive(true);
+            Destroy(other.gameObject);
+            LoadNextLevel();
         }
     }
 

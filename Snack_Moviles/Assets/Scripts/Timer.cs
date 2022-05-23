@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
         else
         {
             Debug.Log("You lose!");
-            //character.SetActive(false);
+            character.SetActive(false);
             b_timeUp = true;
         }
     }
