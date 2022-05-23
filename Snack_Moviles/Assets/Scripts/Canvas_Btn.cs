@@ -12,12 +12,12 @@ public class Canvas_Btn : MonoBehaviour
 
     private void Update()
     {
-        Menu();
-        Game();
+        //Credits();
+        //Game();
     }
-    public void Menu()
+    public void Credits()
     {
-        SceneManager.LoadScene("Créditos");
+        SceneManager.LoadScene("Credits");
     }
     public void Game()
     {

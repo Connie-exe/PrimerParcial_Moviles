@@ -19,6 +19,6 @@ public class LeverLoader_sc : MonoBehaviour
     IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("Créditos");
+        SceneManager.LoadScene("Credits");
     }
 }

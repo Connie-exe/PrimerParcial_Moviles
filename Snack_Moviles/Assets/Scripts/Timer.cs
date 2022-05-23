@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public Image borde_timer;
+    public Image timer;
+    public Image shake;
     public float maxTime;
     public float timeLeft;
     public static bool b_timeUp;
     public GameObject character;
-    //public GameObject panel_lose;
+    public Image im_lose;
     //public GameObject panel_win;
 
     void Start()
@@ -30,7 +32,11 @@ public class Timer : MonoBehaviour
         {
             Debug.Log("You lose!");
             character.SetActive(false);
+            timer.gameObject.SetActive(false);
+            borde_timer.gameObject.SetActive(false);
+            shake.gameObject.SetActive(false);
             b_timeUp = true;
+            im_lose.gameObject.SetActive(true);
         }
     }
 }

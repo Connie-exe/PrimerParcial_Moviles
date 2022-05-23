@@ -7,14 +7,16 @@ using UnityEngine.SceneManagement;
 public class WinCondition : MonoBehaviour
 {
     public GameObject im_win;
+    public Image timer;
+    public Image timer_border;
+    public Image shake; 
     //public GameObject panel_lose;
     void Start()
     {
         
     }
     void Update()
-    {
-        LoadNextLevel();
+    {        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,6 +25,9 @@ public class WinCondition : MonoBehaviour
         {
             im_win.SetActive(true);
             Destroy(other.gameObject);
+            timer.gameObject.SetActive(false);
+            timer_border.gameObject.SetActive(false);
+            shake.gameObject.SetActive(false);
             LoadNextLevel();
         }
     }
@@ -35,6 +40,6 @@ public class WinCondition : MonoBehaviour
     IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Créditos");
+        SceneManager.LoadScene("Credits");
     }
 }
