@@ -9,12 +9,11 @@ public class Acelerometere : MonoBehaviour
     public bool isFlat = true;
     public float speed;
     private Rigidbody rigid;
-    public Text txt_shake;
+    public Image im_shake;
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
-        txt_shake.text = "";
+        rigid = GetComponent<Rigidbody>();        
     }
 
     void Update()
@@ -29,11 +28,7 @@ public class Acelerometere : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ShakeNotif"))
         {
-            txt_shake.text = "SHAKE";
-        }
-        if(other.gameObject.CompareTag("FinishLine"))
-        {
-
-        }
+            im_shake.gameObject.SetActive(true);
+        }       
     }
 }

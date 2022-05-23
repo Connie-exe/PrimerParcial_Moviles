@@ -8,6 +8,8 @@ public class Timer : MonoBehaviour
     public Image borde_timer;
     public float maxTime;
     public float timeLeft;
+    public static bool b_timeUp;
+    public GameObject character;
     //public GameObject panel_lose;
     //public GameObject panel_win;
 
@@ -15,6 +17,7 @@ public class Timer : MonoBehaviour
     {
         borde_timer = GetComponent<Image>();
         timeLeft = maxTime;
+        b_timeUp = false;
     }   
     void Update()
     {
@@ -26,6 +29,8 @@ public class Timer : MonoBehaviour
         else
         {
             Debug.Log("You lose!");
+            //character.SetActive(false);
+            b_timeUp = true;
         }
     }
 }
